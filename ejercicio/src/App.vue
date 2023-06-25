@@ -1,18 +1,20 @@
 <script setup>
 import { ref } from 'vue';
 
-const like= ref(0);
-const dislike= ref(0);
-const love= ref(0);
+var like= ref(93);
+var dislike= ref(0);
+var love= ref(0);
+var bandera = 0;
 
 const Ilike = function(){
-  if(like.value==0){
+  if(bandera<=0){
     like.value++;
-  }
-
-  if(dislike.value==1){
     dislike.value--;
   }
+  if(bandera == 0){
+    dislike.value++;
+  }
+  bandera = 1;
 }
 
 const Ilove = function(){
@@ -22,13 +24,16 @@ const Ilove = function(){
 }
 
 const Idislike= function(){
-  if(dislike.value==0){
+  if(bandera>=0){
+    like.value--;
     dislike.value++;
   }
 
-  if(like.value==1){
+  if(bandera==0){
     like.value--;
   }
+
+  bandera = -1;
 }
 </script>
 
